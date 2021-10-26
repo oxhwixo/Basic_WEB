@@ -988,7 +988,17 @@ border-radius: 10px;
 * 3D 변환 함수
 
   * perspective(n) : 원근법(거리)
-
-  * rotateX(x)
+* rotateX(x)
   * rotateY(y)
   * rotateZ(z)
+  
+* perspective : 함수아니고 속성
+
+  perspective: 600px; ----> 관찰 대상의 부모에 적용. 기준점은 perspective-origin
+
+  transform: perspective(600px); ---> 관찰 대상에 적용. 기준점은 transform-origin
+
+* backface-visibility : 3D 변환으로 회전된 요소의 뒷면 숨김 여부
+
+  * Visible : 뒷면 보임 (기본)
+  * hidden : 숨김
