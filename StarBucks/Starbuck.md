@@ -159,33 +159,33 @@ header .sub-menu ul.menu li a{
 
 ~~~html
 <header>
-		<div class="inner">
-			<a href="./" class="logo">
-				<img src="./images/starbucks_logo.png " alt="STARBUCK LOGO">
-			</a>
-			
-			<div class="sub-menu">
-				<ul class="menu">
-					<li>
-						<a href="./signin">Sign In</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)">My starbucks</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)">Customer Service % Ideas</a>
-					</li>
-					<li>
-						<a href="javascript:void(0)">Find a Store</a>
-					</li>
-				</ul>
-				<div class="search">
-					<input type="text" />
-					<div class="material-icons">search</div>
-				</div>
-			</div>
-		</div>
-	</header>
+  <div class="inner">
+    <a href="./" class="logo">
+      <img src="./images/starbucks_logo.png " alt="STARBUCK LOGO">
+    </a>
+
+    <div class="sub-menu">
+      <ul class="menu">
+        <li>
+          <a href="./signin">Sign In</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">My starbucks</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">Customer Service % Ideas</a>
+        </li>
+        <li>
+          <a href="javascript:void(0)">Find a Store</a>
+        </li>
+      </ul>
+      <div class="search">
+        <input type="text" />
+        <div class="material-icons">search</div>
+      </div>
+    </div>
+  </div>
+</header>
 ~~~
 
 * \<header>의 자식 \<div class='inner'>
