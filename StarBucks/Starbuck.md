@@ -140,3 +140,54 @@ header .sub-menu ul.menu li a{
 }
 ~~~
 
+
+
+### 오른쪽 상단의 서브메뉴 만들기
+
+#### 완성 예시
+
+* 아무런 동작을 하지 않았을 때
+
+	![스크린샷 1](/Users/user/Desktop/Basic_WEB/example1.png)
+
+* 돋보기 아이콘에 포커스 되었을 때
+	![스크린샷2](/Users/user/Desktop/Basic_WEB/example2.png)
+
+
+
+#### HTML 구조
+
+~~~html
+<header>
+		<div class="inner">
+			<a href="./" class="logo">
+				<img src="./images/starbucks_logo.png " alt="STARBUCK LOGO">
+			</a>
+			
+			<div class="sub-menu">
+				<ul class="menu">
+					<li>
+						<a href="./signin">Sign In</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">My starbucks</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">Customer Service % Ideas</a>
+					</li>
+					<li>
+						<a href="javascript:void(0)">Find a Store</a>
+					</li>
+				</ul>
+				<div class="search">
+					<input type="text" />
+					<div class="material-icons">search</div>
+				</div>
+			</div>
+		</div>
+	</header>
+~~~
+
+* \<header>의 자식 \<div class='inner'>
+*  \<div class='inner'>의 자식인 \<div class="sub-manu">
+* \<div class="sub-manu">의 자식인 \<div class="menu">
