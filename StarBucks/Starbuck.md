@@ -148,10 +148,10 @@ header .sub-menu ul.menu li a{
 
 * 아무런 동작을 하지 않았을 때
 
-	![스크린샷 1](/Users/user/Desktop/Basic_WEB/example1.png)
+	![스크린샷 1](./example1.png)
 
 * 돋보기 아이콘에 포커스 되었을 때
-	![스크린샷2](/Users/user/Desktop/Basic_WEB/example2.png)
+	![스크린샷2](./example2.png)
 
 
 
