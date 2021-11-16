@@ -390,3 +390,13 @@ if (window.scrollY > 500) {
 	}
 ~~~
 
+
+
+## VISUAL 
+
+* SECTION 태그 : *HTML* 문서의 독립적인 일반 구획 요소 
+
+#### 구조상의 부모
+
+Position: absolute를 이용해서 부모요소를 기준으로 배치하는 부분에서, 무조건 부모 요소는 position: relative여야 하는 것이 아니라! 부모요소가 position 값을 가지고 있으면 된다. fixed, relative, absolute 등
+

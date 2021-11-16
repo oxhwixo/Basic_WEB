@@ -17,7 +17,7 @@ searchInputEl.addEventListener('blur', function () {
 
 const badgeEl = document.querySelector('header .badges');
 
-// 브라우저의 하나의 탭을 의미함. 윈도우 객체. 
+// window객체는 브라우저의 하나의 탭을 의미함.
 window.addEventListener('scroll', _.throttle(function(){ // 0.3초 단위로 부하를 주어서 함수가 실행되는 것을 제어
 	console.log(window.scrollY);
 	if (window.scrollY > 500) {
@@ -32,4 +32,12 @@ window.addEventListener('scroll', _.throttle(function(){ // 0.3초 단위로 부
 		});
 	}
 }, 300)); 
+
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+fadeEls.forEach(function (fadeEl, index) {
+	gsap.to(fadeEl, 1, {
+		delay: (index + 1) * .7,
+		opacity: 1
+	})
+});
 
