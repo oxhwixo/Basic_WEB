@@ -400,3 +400,11 @@ if (window.scrollY > 500) {
 
 Position: absolute를 이용해서 부모요소를 기준으로 배치하는 부분에서, 무조건 부모 요소는 position: relative여야 하는 것이 아니라! 부모요소가 position 값을 가지고 있으면 된다. fixed, relative, absolute 등
 
+
+
+## NOTICE
+
+### swiperjs
+
+슬라이드를 구현할 수 있게 하는 자바스크립트 라이브러리 
+
