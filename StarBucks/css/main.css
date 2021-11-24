@@ -5,7 +5,7 @@ body {
 	font-weight: 400;
 	line-height: 1.4;
 	font-family: 'Nanum Gothic', sans-serif;
-	height: 3000px;
+	height: 6000px;
 }
 img {
 	display: block;
@@ -68,6 +68,32 @@ a {
 	background-color: #fff;
 	color: #333
 }
+.back-to-position {
+	opacity: 0;
+	transition: 1s;
+}
+.back-to-position.to-right {
+	transform: translateX(-150px);
+}
+.back-to-position.to-left {
+	transform: translateX(150px);
+}
+.show .back-to-position {
+	opacity: 1;
+	transform: translateX(0);
+}
+.show .back-to-position.delay-0 {
+	transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+	transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+	transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+	transition-delay: .9s;
+}
 
 /* HEADER */
 header {
@@ -76,7 +102,7 @@ header {
 	border-bottom: 1px solid #c8c8c8;
 	position: fixed;
 	top: 0;
-	z-index: 9;
+	z-index: 10;
 }
 header > .inner {
 	height: 120px;
@@ -164,11 +190,8 @@ header .main-menu{
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	z-index: 1;
+	z-index: 10;
 	display: flex;
-}
-header .main-menu .item{
-	
 }
 header .main-menu .item .item__name{
 	padding: 10px 20px 34px 20px;
@@ -327,6 +350,7 @@ header .badges .badge{
 .notice .notice-line .inner {
 	height: 62px;
 	display: flex;
+	z-index: 1;
 	/* 높이를 제어하는 부분. 만약에 이렇게 하지 않고 각각 높이를 정해주면 높이를 바꿀 때 마다 여러 작업을 해야함 */
 }
 .notice .notice-line .inner .inner__left {
@@ -335,6 +359,7 @@ header .badges .badge{
 	background-color: #333;
 	display: flex;
 	align-items: center;
+	overflow: hidden;
 }
 .notice .notice-line .inner .inner__left h2 {
 	color: #fff;
@@ -343,9 +368,16 @@ header .badges .badge{
 	margin-right: 20px;
 }
 .notice .notice-line .inner .inner__left .swiper-container {
-	background-color: orange;
 	height: 62px;
 	flex-grow: 1;
+}
+.notice .notice-line .inner .inner__left .swiper-slide {
+	height: 62px;
+	display: flex;
+	align-items: center;
+}
+.notice .notice-line .inner .inner__left .swiper-slide a {
+	color: #fff;
 }
 .notice .notice-line .inner .inner__left .notice-line__more {
 	width: 62px;
@@ -380,6 +412,409 @@ header .badges .badge{
 .notice .notice-line .inner .inner__right .toggle-promotion .material-icons {
 	font-size: 30px;
 }
+.notice .promotion {
+	position: relative;
+	height: 693px;
+	background-color: #f6f5ef;
+	transition: height .4s;
+	overflow: hidden;
+}
+.notice .promotion.hide {
+	height: 0;
+}
+.notice .promotion .swiper-container{
+	width: calc(819px * 3 + 20px);
+	height: 553px;
+	position: absolute;
+	top: 40px;
+	left: 50%;
+	margin-left: calc((819px * 3 + 20px) / -2);
+	/* 요소를 확대해도 언제나 가운데 위치를 유지하게 하는 방법!!!! left를 50%로 설정하고 margin-left를 요소의 크기 절반만큼 마이너스값으로 입력한다.*/
+}
+.notice .promotion .swiper-slide {
+	position: relative;
+	opacity: .5;
+	transition: opacity 1s;
+}
+.notice .promotion .swiper-slide-active {
+	opacity: 1;
+}
+.notice .promotion .swiper-slide .btn{
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+.notice .promotion .swiper-pagination {
+	bottom: 40px;
+	left: 0;
+	right: 0;
+	z-index: 9;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet {
+	background-image: url("../images/promotion_slide_pager.png");
+	background-color: transparent;
+	width: 12px;
+	height: 12px;
+	margin-right: 6px;
+	outline: 0;
+}	
+.notice .promotion .swiper-pagination .swiper-pagination-bullet:last-child() {
+	margin-right: 0;
+}
+.notice .promotion .swiper-pagination .swiper-pagination-bullet-active {
+	background-image: url("../images/promotion_slide_pager_on.png");
+}
+.notice .promotion .swiper-prev, 
+.notice .promotion .swiper-next {
+	/* 다중선택자!! 꼭 쉼표 이후에 엔터 처리 해줄 것! 가독성 때문에 필수~!!! */
+	width: 42px;
+	height: 42px;
+	border: 2px solid #333;
+	border-radius: 50%;
+	position: absolute;
+	top: 300px;
+	z-index: 1;
+	cursor: pointer;
+	outline: none;
+	display: flex;
+	justify-content: center; 
+	/* 수평 정렬 */
+	align-items: center;
+	/* 수직 정렬 */
+	transition: .4s;
+}
+.notice .promotion .swiper-prev{
+	left: 50%;
+	margin-left: -480px;
+}
+
+.notice .promotion .swiper-next {
+	right: 50%;
+	margin-right: -480px;
+}
+.notice .promotion .swiper-prev:hover, 
+.notice .promotion .swiper-next:hover {
+	background-color: #333;
+	color: #fff;
+}
 
 
+/* REWARDS */
+.rewards {
+	position: relative;
+}
+.rewards .bg-left{
+	width: 50%;
+	height: 100%;
+	background-color: #272727;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.rewards .bg-right{
+	width: 50%;
+	height: 100%;
+	background-color: #d5c798;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+.rewards .inner {
+	background-image: url("../images/rewards.jpg");
+	height: 241px;
+}
+.rewards .btn-group {
+	position: absolute;
+	bottom: 24px;
+	right: 0;
+	width: 250px;
+	display: flex;
+	flex-wrap: wrap;
+	/* flex 컨테이너 너비를 넘어가면 수평으로 쌓이던 요소가 수직으로도 배치되게 함 */
+}
+.rewards .btn-group .btn.sign-up {
+	margin-right: 10px;
+}
+.rewards .btn-group .btn.sign-in {
+	width: 110px;
+}
+.rewards .btn-group .btn.gift {
+	margin-top: 10px;
+	flex-grow: 1;
+	/* flex 컨테이너 크기만큼 최대한으로 늘어나게 함 */
+}
 
+
+/* YOUTUBE */
+.youtube {
+	position: relative;
+	background-color: #333;
+	height: 700px;
+	overflow: hidden;
+}
+.youtube .youtube__area {
+	width: 1920px;
+	background-color: orange;
+	position: absolute;
+	left: 50%;
+	margin-left: calc(1920px / -2);
+	top: 50%;
+	margin-top: calc(1920px * 9 / 16 / -2);
+	/* 높이는 1920px * 9 / 16 이기 때문에 */
+}
+.youtube .youtube__area::before {
+	/* youtube__area클래스를 가진 태그가 가로 너비를 가질 때
+	자식 태그 안에서 padding-top을 이용해서 가로 너비를 기준으로한 
+	특정 비율로 높이를 지정할 수 있다. 그런데 자식 태그가 그것만을 위해 존재해야한다면
+	굳이 div태그로 만들어줄 필요 없이 가상요소선택자를 통해서 처리 가능하다.
+	여기서 궁금점.. 왜 가능하지? 가상요소선택자는 태그로 따지면 자식 태그가 되나?*/
+	content: "";
+	display: block;
+	width: 100%;
+	height: 0;
+	padding-top: 56.25%;
+}
+.youtube .youtube__cover {
+	background-image: url("../images/video_cover_pattern.png");
+	background-color: rgba(0,0,0,.3);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+#player {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.youtube .inner {
+	height: 700px;
+}
+.youtube .floating1 {
+	position: absolute;
+	top: 50px;
+	left: 0;
+}
+.youtube .floating2 {
+	position: absolute;
+	top: 350px;
+	left: 150px;
+}
+.season-product .floating3 {
+	position: absolute;
+	top: -200px;
+	right: 0;
+}
+
+
+/* SEASON PRODUCT */
+.season-product {
+	background-image: url("../images/season_product_bg.jpg");
+}
+.season-product .inner {
+	height: 400px;
+}
+.season-product .text-group {
+	position: absolute;
+	top: 110px;
+	right: 100px;
+}
+.season-product .text-group .title {
+	margin-bottom: 10px;	
+}
+.season-product .text-group .description {
+	margin-bottom: 15px;
+}
+.season-product .text-group .more {
+	
+}
+
+/* RESERVE COFFEE */
+.reserve-coffee {
+	background-image: url("../images/reserve_bg.jpg");
+}
+.reserve-coffee .inner {
+	height: 400px;
+}
+.reserve-coffee .reserve-logo{
+	position: absolute;
+	top: 110px;
+	left: 0;	
+}
+.reserve-coffee .text-group{
+	position: absolute;
+	top: 124px;
+	left: 208px;
+}
+.reserve-coffee .product{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+
+/* PICK YOUR FAVORITE */
+.pick-your-favorite {
+	background-image: url("../images/favorite_bg.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.pick-your-favorite .inner {
+	padding: 110px 0;
+}
+.pick-your-favorite .text-group {
+	margin-left: 100px;
+	display: flex;
+	width: 362px;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+}
+.pick-your-favorite .text-group .title {
+	margin-bottom: 40px;
+}
+.pick-your-favorite .text-group .description {
+	margin-bottom: 40px;
+}
+
+
+/* RESERVE-STORE */
+.reserve-store {
+	background-image: url("../images/reserve_store_bg.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-attachment: fixed;
+	background-size: cover;
+}
+.reserve-store .inner {
+	height: 600px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.reserve-store .medal {
+	width: 334px;
+	height: 334px;
+	perspective: 300px;
+}
+.reserve-store .medal .front,
+.reserve-store .medal .back {
+	position: absolute;
+	width: 334px;
+	height: 334px;
+	backface-visibility: hidden;
+	/* 뒷면은 보여주지 않음 */
+	transition: 1s;
+}
+.reserve-store .medal .front {
+	transform: rotateY(0deg);
+}
+.reserve-store .medal .back {
+	transform: rotateY(-180deg);
+}
+.reserve-store .medal:hover .front {
+	transform: rotateY(-180deg);
+}
+.reserve-store .medal:hover .back {
+	transform: rotateY(0deg);
+}
+.reserve-store .medal .back .btn{
+	position: absolute;
+	top: 240px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+}
+
+/* FIND-STORE */
+.find-store {
+ background-image: url("../images/find_store_bg.jpg");
+}
+.find-store .inner {
+	height: 400px;
+}
+.find-store .texture1 {
+	position: absolute;
+	top: 0;
+	left: 400px;
+}
+.find-store .texture2 {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+}
+.find-store .picture {
+	position: absolute;
+	border-radius: 50%;
+	box-shadow: 2px 2px 8px rgba(0,0,0,.5);
+}
+.find-store .picture1 {
+	top: -60px;
+	left: 0;
+}
+.find-store .picture2 {
+	top: 150px;
+	left: 250px;
+}
+.find-store .text-group {
+	position: absolute;
+	top: 120px;
+	left: 550px;
+}
+.find-store .text-group .title {
+	margin-bottom: 20px;
+}
+.find-store .text-group .description {
+	margin-bottom: 20px;
+}
+
+
+/* AWARDS */
+.awards {
+	background-color: #272727;
+}
+.awards .inner {
+	padding: 40px 0;
+	background-color: orange;
+}
+.awards .swiper-container {
+	width: 100%;
+	height: 40px;
+}
+.awards .swiper-prev,
+.awards .swiper-next {
+	width: 42px;
+	height: 42px;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	outline: none;
+	color: #fff;
+	opacity: .3;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	z-index: 1;
+}
+.awards .swiper-prev {
+	left: -100px;
+}
+.awards .swiper-next {
+	right: -100px;
+}
+
+.awards .swiper-prev:hover,
+.awards .swiper-next:hover {
+	background-color: #fff;
+	color: #333;
+}

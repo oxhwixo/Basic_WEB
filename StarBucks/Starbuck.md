@@ -127,7 +127,7 @@ css 파일에서 img 태그선택자를 이용해서 display를 블럭 요소로
 ### 수직 가운데 배치 방법 (배치 != 정렬)
 
 position은 absolute로 하고 top, bottom 속성의 값을 0으로 입력한다.
-높이값이 명시되어있는 상태에서 margin속성의 값을 auto 0으로 입력하면 성공!
+**높이값이 명시되어있는 상태**에서 margin속성의 값을 auto 0으로 입력하면 성공!
 
 수평 가운데 정렬은 마찬가지로 left, right 속성의 값을 0으로 입력하고 가로 너비가 명시되어있는 상태에서  margin에 0 auto를 입력하면 된다. 
 
@@ -370,7 +370,7 @@ window.addEventListener('scroll', _.throttle(function(){ // 0.3초 단위로 부
 
 
 
-#### gap cdn
+#### gsap cdn
 
 자바스크립트에서 애니메이션 효과를 줄 수 있도록 함수들을 제공하는 라이브러리.
 
@@ -402,9 +402,249 @@ Position: absolute를 이용해서 부모요소를 기준으로 배치하는 부
 
 
 
+#### 여러개 요소 각각 페이드인 하기
+
+forEach 함수와 gsap을 이용해서 각각 요소에 딜레이 시간을 주어서 구현.
+
+~~~js
+const fadeEls = document.querySelectorAll('.visual .fade-in');
+fadeEls.forEach(function (fadeEl, index) {
+	gsap.to(fadeEl, 1, {
+		delay: (index + 1) * .7, // 0.7 1.4 2.1 2.7 순으로 딜레이 생김
+		// 만약 그냥 delay를 .7으로 두면 모든 이미지가 0.7초 후에 한번에 나타남 모든 요소에 .7초 후에 나타나라고 명령했기 때문
+		opacity: 1
+	})
+});
+~~~
+
+
+
 ## NOTICE
+
+### % 크기
+
+width나 height에 %를 이용해서 크기를 지정했을 때 어떤 것을 기준으로 %를 계산할까?
+
+부모에 높이, 너비 값이 지정되어있다면 그 값을 따라갈 것이다.
+만약 부모가 높이와 너비 값을 가지고 있지 않을 때, 형제 요소중 높이, 너비 값을 가지고 있는 형제가 있다면 그 형제의 크기에 따라서 부모의 크기가 결정된다. 그 크기를 기준으로 % 크기 계산이 이루어진다. 
 
 ### swiperjs
 
-슬라이드를 구현할 수 있게 하는 자바스크립트 라이브러리 
+슬라이드를 구현할 수 있게 하는 자바스크립트 라이브러리  https://swiperjs.com
 
+Demos에 들어가서 원하는 슬라이드 동작을 선택하고 Core를 누르면 코드를 볼 수 있음.
+
+Get started 부분 참고해서 css, js 파일과 html을 연결하고 기본 구조를 html 문서에 작성한 후에 js 코드를 추가.
+
+~~~js
+// new Swiper(선택자, 옵션)
+new Swiper('.notice-line .swiper-container', {
+	direction: 'vertical',
+	autoplay: true,
+	loop: true
+});
+~~~
+
+
+
+### 버튼을 통해 요소가 나오고 사라지게 만들기
+
+css만 가지고 구현하기에 한계가 있는 것은 gsap을 이용하지만, 버튼을 통해서 단순히 나오고 사라지게 하는 정도는 css를 통해서 제어 가능하다.
+
+~~~js
+const promotionEl = document.querySelector('.promotion');
+const promotionToggleBtn = document.querySelector('.toggle-promotion');
+let isHidePromotion = false;
+
+promotionToggleBtn.addEventListener('click', function () {
+	isHidePromotion = !isHidePromotion;
+	// 변수의 값을 지속적으로 반대 값으로 전환시켜줄 수 있음
+	if (isHidePromotion) {
+		// 숨김 처리
+		promotionEl.classList.add('hide');
+	} else {
+		// 보임 처리
+		promotionEl.classList.remove('hide');
+	}
+})
+~~~
+
+
+
+## YOUTUBE
+
+### 가로, 세로 비율이 있는 요소 만들기
+
+부모에 너비 값만 존재하고 높이 값이 없는 상태에서 자식 요소의 너비를 100%로 하고 높이를 0으로 주고, padding-top을 50%로 입력했을 때, 세로가 가로의 50% 크기만큼 부여된다. 
+
+Padding 값은 요소의 width를 참고하기 때문이다. 
+
+padding-top을 56.25%로 하면 16:9 비율이 되며 이는 동영상 컨텐츠를 가져올 때 흔히 사용된다. 
+
+
+
+### youtube iframe api
+
+유튜브 영상을 재생할 영역은 \<div id="player">\</div> 작성
+
+자바스크립트 파일 생성
+
+~~~js
+// Youtube IFrame API를 비동기로 로드합니다.
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+function onYouTubePlayerAPIReady() {
+  // <div id="player"></div>
+  new YT.Player('player', {
+    videoId: 'An6LvWQuj_8', // 재생할 유튜브 영상 ID
+    playerVars: {
+      autoplay: true, // 자동 재생 유무
+      loop: true, // 반복 재생 유무
+      playlist: 'An6LvWQuj_8' // 반복 재생할 유튜브 영상 ID 목록
+    },
+    events: {
+      // 영상이 준비되었을 때,
+      onReady: function (event) {
+        event.target.mute(); // 음소거!
+      }
+    }
+  });
+}
+~~~
+
+
+
+ ### gsap easing
+
+gsap으로 애니메이션 효과를 줄 때 효과의 빠르기? 를 조절 가능
+
+type: easeInOut 은 완만한 느낌.
+
+
+
+### random 함수
+
+~~~js
+// 범위 랜덤 함수(소수점 2자리까지)
+function random(min, max) {
+	// `.toFixed()`를 통해 반환된 문자 데이터를,
+  // `parseFloat()`을 통해 소수점을 가지는 숫자 데이터로 변환
+  return parseFloat((Math.random() * (max - min) + min).toFixed(2))
+}
+~~~
+
+* parseFloat ?
+
+* toFixed ?
+
+
+
+## RESERVE-STORE
+
+### 마우스를 올리면 카드가 뒤집어지는 애니메이션
+
+Backface-visibility 속성을 이용해서 요소가 180도 뒤집어져서 뒷면이 보일때 그 뒷면을 보이지 않게 하여 카드가 뒤집어지는 애니메이션을 만들 수 있다.
+
+~~~css
+.reserve-store .medal {
+	width: 334px;
+	height: 334px;
+	perspective: 300px;
+}
+.reserve-store .medal .front,
+.reserve-store .medal .back {
+	position: absolute;
+	width: 334px;
+	height: 334px;
+	backface-visibility: hidden;
+	/* 뒷면은 보여주지 않음 */
+	transition: 1s;
+}
+.reserve-store .medal .front {
+	transform: rotateY(0deg);
+}
+.reserve-store .medal .back {
+	transform: rotateY(-180deg);
+}
+.reserve-store .medal:hover .front {
+	transform: rotateY(-180deg);
+}
+.reserve-store .medal:hover .back {
+	transform: rotateY(0deg);
+}
+~~~
+
+
+
+
+
+## 스크롤 애니메이션
+
+화면을 스크롤할 때, 각각의 섹션들이 화면에 보이게 되면 애니메이션 처리를 하여 이미지 요소들이 나오게 하기.
+
+### ScrollMagic cdn
+
+원하는 섹션이 화면에 보이고 있는지 그렇지 않은지 판단할 수 있게 하는 자바스크립트 라이브러리
+
+~~~js
+const spyEls = document.querySelectorAll('section.scroll-spy');
+spyEls.forEach(function (spyEl) {
+	new ScrollMagic
+		.Scene({
+			triggerElement: spyEl // 보여짐 여부를 감시할 요소를 지정
+			triggerHook: 0.8 // 뷰포트 0.8 지점을 넘어가면 실행
+		})
+		.setClassToggle(spyEl, 'show')
+		.addTo(new ScrollMagic.Controller());
+});
+~~~
+
+section.scroll-spy 선택자에 해당하는 요소가 뷰포트 0.8 지점을 지나가면 해당 요소에 show라는 클래스를 추가하고 만약 다시 0.8 지점을 지나지 않게 되면 show라는 클래스를 삭제함. 
+
+
+
+애니메이션을 적용할 section에 scroll-spy클래스를 추가하고 애니메이션이 적용될 각각의 요소에 클래스를 추가해서 css에서 애니메이션 처리를 해준다. 
+
+~~~css
+.back-to-position {
+	opacity: 0;
+	transition: 1s;
+}
+.back-to-position.to-right {
+	transform: translateX(-150px);
+}
+.back-to-position.to-left {
+	transform: translateX(150px);
+}
+.show .back-to-position {
+	opacity: 1;
+	transform: translateX(0);
+}
+.show .back-to-position.delay-0 {
+	transition-delay: 0s;
+}
+.show .back-to-position.delay-1 {
+	transition-delay: .3s;
+}
+.show .back-to-position.delay-2 {
+	transition-delay: .6s;
+}
+.show .back-to-position.delay-3 {
+	transition-delay: .9s;
+}
+~~~
+
+.back-to-position 클래스를 가지고 있으면 투명도를 0으로 설정하고 전환효과를 1초로 설정한다. 
+
+to-right 클래스를 가지고있으면 왼쪽에서 오른쪽으로 애니메이션이 되게 할 것이기 때문에 요소를 왼쪽으로 이동 시켜 놓아야 한다. to-left도 마찬가지로 요소를 오른쪽으로 이동 시켜 놓아야 한다.
+
+요소가 ScrollMagic의 메소드를 통해서 설정한 뷰포트를 지나 show 클래스가 추가된다면 투명도를 1로 설정하고, 원래 우리가 설정해둔 자리로 돌아오게 한다. 
+
+각각의 요소가 같이 움직이지 않고 딜레이를 주어서 따로따로 움직일 수 있게 한다. 
+
+### 뷰포트 값
+
+0이 최 상단, 1이 최 하단, 0.5가 가운데
