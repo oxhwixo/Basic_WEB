@@ -647,7 +647,7 @@ const toObject = (a, b, ...c) => ({a, b, c})
     * 가져오는 이름 as 원하는 이름 : 이 방법으로 데이터 이름을 변경할 수 있다. 
     * \* as 객체이름 : 이 방법으로 모듈 안의 모든 데이터를 한번에 가져올 수 있다. 
 
-
+  
 
 ### Json 
 
@@ -661,9 +661,66 @@ JSON.stingify(객체이름) 이다.
 이런 JSON 문자 포맷의 문자 데이터를 자바스크립트 파일 내에서 객체 포맷으로 바꾸는 함수는
 JSON.parse(JSON 형식의 문자데이터 이름) 이다.
 
-
+  
 
 ### Local storage, Session storage
 
 사이트에 종속된 데이터 저장소. Local storage 는 페이지를 닫아도 사라지지 않고 Session storage 는 사이트를 닫으면 데이터가 사라진다.  
+
+* localStorage.setItem('Key', item) : 로컬스토리지에 데이터 내보내기
+* localStorage.getItem('key') : 로컬스토리지에서 데이터 가져오기
+* localStorage.removeItem('key') : 데이터 삭제
+
+객체 데이터를 item에 넣기 위해서는 JSON 형식의 문자 데이터로 바꿔야함
+
+#### lowdb
+
+Lodash 패키지를 기반으로 동작하는 간소화된 제이슨 데이터베이스 시스템 (Small JSON database for Node )
+
+  
+
+### OMDb API 사용하기
+
+* Query String 
+  * 주소?속성=값&속성=값&속성=값
+* axios : http 요청을 처리하는 자바스크립트 패키지
+  * axios.get(api명령).then((response) => {})
+
+
+
+## 정규표현식
+
+정규표현식이란 문자열을 검색하고 대체하는데 사용하는 일종의 형식 언어(패턴) 이다. 
+
+### 역할
+
+* 문자 검색
+* 문자 대체
+* 문자 추출 
+
+
+
+### 생성 방식
+
+* 생성자 함수 방식
+
+  const regexp1 = new RegExp("^abc", 옵션);
+
+* 리터럴 방식
+
+  const regexp1 =  /^abc/옵션;
+
+
+
+### 테스트 사이트 
+
+Https://regexr.com/
+
+
+
+### 사용
+
+str.match(정규표현식)
+
+
 
