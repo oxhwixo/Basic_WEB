@@ -721,6 +721,3 @@ Https://regexr.com/
 ### 사용
 
 str.match(정규표현식)
-
-
-

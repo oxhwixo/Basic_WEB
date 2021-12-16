@@ -1,3 +1,7 @@
 import getType from "./getType";
+import random from "./getRandom";
+import _ from 'lodash'
 
-console.log(getType(null));
+
+const a = random();
+
