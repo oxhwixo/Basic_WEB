@@ -458,9 +458,8 @@ Html의 속성은 attributes, CSS와 JS에서는 Properties.
 
 #### \<span>
 
-![스크린샷 2021-10-20 오후 7.19.40](/Users/user/Desktop/ALL/study/스크린샷 2021-10-20 오후 7.19.40.png)
 
-#### \<div>![스크린샷 2021-10-20 오후 7.20.06](/Users/user/Desktop/ALL/study/스크린샷 2021-10-20 오후 7.20.06.png)
+#### \<div>
 
 
 
